@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.contrib.auth.views import LogoutView
+from . forms import RegisterForm
 
 
 def home(request):
@@ -19,7 +20,7 @@ class MyLoginView(LoginView):
 
 
 class RegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = RegisterForm
     template_name = 'users/register.html'
 
     def get_success_url(self):
