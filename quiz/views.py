@@ -5,11 +5,14 @@ from .forms import QuizForm,QuestionForm,ChoiceFormset
 
 
 
-# Quize.
+# Quize Crud
 def quiz_list(request):
-  quiz = Quiz.objects.select_related('quiz').all()
+  quiz = Quiz.objects.all()
   return render(request,'quiz/quiz_list.html',{'quiz':quiz})
 
+'''
+we define a view function called quiz_detail that takes a quiz_id parameter. We use Quiz.objects.get() to retrieve the Quiz object with the given ID, and then use the question_set attribute to retrieve all Question objects related to the Quiz. We create a context dictionary containing the quiz and questions objects, and then pass the context to the render() function along with the name of the template to render, which is 'quiz_detail.html' in this case.
+'''
 def quiz_detail(request, id):
     quiz = Quiz.objects.get(id=id)
     questions = quiz.question_set.all()
@@ -63,5 +66,12 @@ def create_quistion(request,id):
         question_form = QuestionForm()
         choice_formset = ChoiceFormset()
     return render(request, 'quiz/create_quistion.html', {'quistion_form': question_form, 'choice_formset': choice_formset})
+ 
+# Answers
 
-
+# def submit(request,id):
+#  quiz = get_object_or_404(Quiz,id=id)
+#  score = 0
+#  for quistion in quiz.quistion_set.all():
+    
+  

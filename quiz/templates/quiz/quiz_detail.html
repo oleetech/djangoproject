@@ -1,6 +1,9 @@
 
-
-
+<!-- 
+we use Django template language syntax to access the data we passed to the template in our view function. We display the title of the Quiz object as an <h1> heading, and then use a for loop to iterate over the Question objects related to the Quiz. For each Question, we display its text as an <h2> heading, and then use another for loop to iterate over the related Choice objects. For each Choice, we display its text as a list item, and if it's the correct answer (as indicated by the is_correct field), we set the color of the text to green using a CSS style.
+-->
+    
+    
 <h1>{{ quiz.title }}</h1>
 {% for question in questions %}
     <h2>{{ question.text }}</h2>
@@ -12,3 +15,18 @@
 {% endfor %}
 
 
+<h1>{{ quiz.title }}</h1>
+
+
+<form  method="post">
+  {% csrf_token %}
+  {% for question in questions %}
+  <h2>{{ question.text }}</h2>
+  <ul>
+    {% for choice in question.choice_set.all %}
+    <input type="radio" name="question{{ question.id }}" id="" value="{{ choice.choice_text }} "> {{ choice.choice_text }} <br>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+  <input type="submit" value="Submit">
+</form>
