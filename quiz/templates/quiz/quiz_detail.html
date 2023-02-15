@@ -1,0 +1,14 @@
+
+
+
+<h1>{{ quiz.title }}</h1>
+{% for question in questions %}
+    <h2>{{ question.text }}</h2>
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li{% if choice.is_correct %} style="color:green;"{% endif %}>{{ choice.choice_text }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+

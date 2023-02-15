@@ -1,6 +1,6 @@
 <form method="post">
-    {% csrf_token %}
-    {{
-        form.as_p
-    }}
+  {% csrf_token %}
+  {{ quistion_form.as_p }}
+  {{ choice_formset.as_p }}
+  <input type="submit" value="Save">
 </form>

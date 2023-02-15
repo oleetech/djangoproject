@@ -1,6 +1,12 @@
+
+
 {% for quizs in quiz %}
-{{quizs.title}}
-{{quizs.description}}
-<a href="{% url 'edit_quiz' quizs.id %}">Edit</a>
-<a href="{% url 'delete_quiz' quizs.id %}">Delete</a>
+
+
+<a href="{% url 'detail_quiz' quizs.id %}">{{quizs.title}} </a>
+<a href="{% url 'create_quistion' quizs.id %}">Create Quiz</a>
+<!-- <a href="{% url 'edit_quiz' quizs.id %}">Edit</a>
+<a href="{% url 'delete_quiz' quizs.id %}">Delete</a> -->
+
+
 {% endfor %}
