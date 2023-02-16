@@ -1,0 +1,194 @@
+
+  <!-- Welcome Section -->
+  <section id="welcome">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>{{ welcome.title }}</h1>
+          <h2>{{ welcome.subtitle }}</h2>
+        </div>
+        <div class="col-md-6">
+          <img src="{{ welcome.image.url }}" alt="Welcome Image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>About Me</h3>
+          <p>{{ about.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>My Skills</h3>
+          <ul>
+            {% for skill in skills %}
+              <li>{{ skill.name }} ({{ skill.level }})</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>My Education</h3>
+          <ul>
+            {% for edu in education %}
+              <li>{{ edu.degree }} - {{ edu.school }} ({{ edu.year }})</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>My Experience</h3>
+          <ul>
+            {% for exp in experience %}
+              <li>{{ exp.title }} - {{ exp.company }} ({{ exp.year }})</li>
+              <p>{{ exp.description }}</p>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section id="awards">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>My Awards</h3>
+          <ul>
+            {% for award in awards %}
+              <li>{{ award.title }} ({{ award.year }})</li>
+              <p>{{ award.description }}</p>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>My Services</h3>
+          <ul>
+            {% for service in services %}
+              <li>{{ service.title }}</li>
+              <p>{{ service.description }}</p>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Section -->
+  <section id="clients">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>   My Clients</h3>
+          <div class="row">
+            {% for client in clients %}
+              <div class="col-md-3">
+                <img src="{{ client.logo.url }}" alt="{{ client.name }}">
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>What People Say</h3>
+          <div class="row">
+            {% for testimonial in testimonials %}
+              <div class="col-md-4">
+                <blockquote>{{ testimonial.quote }}</blockquote>
+                <p><strong>{{ testimonial.name }}</strong><br>
+                {{ testimonial.position }} - {{ testimonial.company }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Frequently Asked Questions</h3>
+          <ul>
+            {% for question in faq %}
+              <li>
+                <h4>{{ question.question }}</h4>
+                <p>{{ question.answer }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Contact Me</h3>
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
