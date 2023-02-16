@@ -15,18 +15,3 @@ we use Django template language syntax to access the data we passed to the templ
 {% endfor %}
 
 
-<h1>{{ quiz.title }}</h1>
-
-
-<form  method="post">
-  {% csrf_token %}
-  {% for question in questions %}
-  <h2>{{ question.text }}</h2>
-  <ul>
-    {% for choice in question.choice_set.all %}
-    <input type="radio" name="question{{ question.id }}" id="" value="{{ choice.choice_text }} "> {{ choice.choice_text }} <br>
-    {% endfor %}
-  </ul>
-  {% endfor %}
-  <input type="submit" value="Submit">
-</form>

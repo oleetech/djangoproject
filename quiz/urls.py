@@ -8,7 +8,7 @@ urlpatterns =[
     path('edit_quiz/<int:id>',views.edit_quiz,name='edit_quiz'),
     path('delete_quiz/<int:id>',views.delete_quiz,name='delete_quiz'),
 
-    path('create_quistion/<int:id>',views.create_quistion,name='create_quistion')
+    path('create_quistion/<int:id>',views.create_quistion,name='create_quistion'),
     
-
+    path('exam/<int:id>',views.exam,name='exam')
 ]

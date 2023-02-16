@@ -75,3 +75,11 @@ def create_quistion(request,id):
 #  for quistion in quiz.quistion_set.all():
     
   
+def exam(request, id):
+  if request.method == 'POST':
+    pass
+  else:
+    quiz = Quiz.objects.get(id=id)
+    questions = quiz.question_set.all()
+    context = {'quiz': quiz, 'questions': questions}
+    return render(request, 'quiz/exam.html',context)

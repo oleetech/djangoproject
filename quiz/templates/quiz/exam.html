@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          input[type=radio].success:checked {
+      accent-color: green;
+  }
+
+  input[type=radio].wrong:checked {
+      accent-color: red;
+  }
+    </style>
+</head>
+<body>
+    <h1>{{ quiz.title }}</h1>
+
+
+<form  method="post" id="quiz-form">
+  {% csrf_token %}
+  {% for question in questions %}
+  <h2>{{ question.text }}</h2>
+  <ul>
+    {% for choice in question.choice_set.all %}
+    <input type="radio" name="question{{ question.id }}"  id="" value="{{ choice.choice_text }} " {% if choice.is_correct %} class="correct"{% endif %}> {{ choice.choice_text }} <br>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+    // For Show Score Based On Input class Correct Count    
+    document.getElementById("quiz-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // prevent form submission
+        
+        let numCorrect = 0;
+        
+        // loop through each radio input And Count Score
+        document.querySelectorAll("input[type='radio']").forEach(function(input) {
+          if (input.checked && input.classList.contains("correct")) {
+            
+            input.classList.add('success')
+
+            numCorrect++; // increment count for each correct answer selected
+    
+          }
+    
+          else{
+            input.classList.add('wrong')
+          }
+        });
+        
+        // display the count of correct answers
+        alert("You got " + numCorrect + " out of " + document.querySelectorAll("input[type='radio'].correct").length + " correct.");
+      
+      });
+    </script>
+</body>
+</html>
+
+
+
+
+
