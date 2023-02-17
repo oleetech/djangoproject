@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <form  method="post" enctype="multipart/form-data" class="form-set" id="id_form-TOTAL_FORMS">
+        <form  method="post" enctype="multipart/form-data" id="form-container">
             {% csrf_token %}
             {{ formset.management_form }}
           
@@ -27,34 +27,23 @@
                 </thead>
                 <tbody>
                   {% for form in formset %}
-                    <tr>
+                    <tr class="item-form">
                       <td>{{ form.item_code }}</td>
                       <td>{{ form.item_name }}</td>
                       <td>{{ form.item_description }}</td>
                       <td>{{ form.item_price }}</td>
                       <td>{{ form.item_qty }}</td>
                       <td>{{ form.item_picture }}</td>
-                      <td><button type="button" class="remove-formset">Remove</button>
-                        <button type="button" class="add-formset">Add person</button>
+                      <td>
                     </td>
                     </tr>
                   {% endfor %}
-                  <tr id="empty_formset" style="display: none;">
-                    <td>{{ formset.empty_form.item_code }}</td>
-                    <td>{{ formset.empty_form.item_name }}</td>
-                    <td>{{ formset.empty_form.item_description }}</td>
-                    <td>{{ formset.empty_form.item_price }}</td>
-                    <td>{{ formset.empty_form.item_qty }}</td>
-                    <td>{{ formset.empty_form.item_picture }}</td>
-                    
-                    <td><button type="button" class="remove-formset">Remove</button>
-                    <button type="button" class="add-formset">Add person</button>
-                    </td>
-                  </tr>
+
+      
+            
                 </tbody>
               </table>
-      
-            <br>
+            <button id="add-form" type="button">Add Another item</button>
             <input type="submit" value="submit">
             
             </form>
@@ -64,33 +53,32 @@
               
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script>
-            $(document).ready(function() {
-              // Add new formset
-              $('button.add-formset').click(function(e) {
-                e.preventDefault();
-                var form_count = parseInt($('#id_form-TOTAL_FORMS').val());
-                var new_form = $('#empty_formset').html().replace(/__prefix__/g, form_count);
-                $('#formset tbody').append(new_form);
-                $('#id_form-TOTAL_FORMS').val(form_count + 1);
-                if (form_count + 1 == parseInt($('#id_form-MAX_NUM_FORMS').val())) {
-                  $('button.add-formset').prop('disabled', true);
-                }
-                $('button.remove-formset').prop('disabled', false);
-              });
-        
-              // Remove last formset
-              $('button.remove-formset').click(function(e) {
-                e.preventDefault();
-                var form_count = parseInt($('#id_form-TOTAL_FORMS').val());
-                $('#formset tbody tr:last').remove();
-                $('#id_form-TOTAL_FORMS').val(form_count - 1);
-                if (form_count - 1 == 1) {
-                  $('button.remove-formset').prop('disabled', true);
-                }
-                $('button.add-formset').prop('disabled', false);
-              });
-            });
-          </script>
+          let itemForm = document.querySelectorAll(".item-form")
+          let container = document.querySelector("#form-container")
+          let addButton = document.querySelector("#add-form")
+          let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+          // Get the hidden input element number of form 
+          var inputElement = document.getElementById("id_item-TOTAL_FORMS");
+
+  
+          let formNum = itemForm.length-1
+          addButton.addEventListener('click', addForm)
+  
+          function addForm(e){
+              e.preventDefault()
+  
+              let newForm = itemForm[0].cloneNode(true)
+              let formRegex = RegExp(`item-(\\d){1}-`,'g')
+  
+              formNum++
+              inputElement.value = formNum+1
+              newForm.innerHTML = newForm.innerHTML.replace(formRegex, `item-${formNum}-`)
+              container.insertBefore(newForm, addButton)
+              
+              totalForms.setAttribute('value', `${formNum+1}`)
+          }
+      </script>
   
 
 
