@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr>
+<div class="table-responsive">
+    <table class="table 
+    table-bordered
+    align-middle">
+        <thead class="">
+            <caption>Citizen Information</caption>
+            <tr>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for citizen in citizens %}
+                <tr>
+                    <td scope="row">{{ citizen.name}}</td>
+                    <td>{{ citizen.date_of_birth}}</td>
+                    <td>{{ citizen.address}}</td>
+                    <td>
+                        <a href="{% url 'update_citizen' citizen.id %}">Edit </a>
+                        <a href="{% url 'delete_citizen' citizen.id %}">Delete </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                
+            </tfoot>
+    </table>
+</div>
+
+
+{% endblock %}

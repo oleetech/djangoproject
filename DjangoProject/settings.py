@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'blog',
+    'nid',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
