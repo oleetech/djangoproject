@@ -64,3 +64,30 @@ def delete_citizen(request,id):
  Nid.objects.filter(id=id).delete()
  return redirect('citizen_list')
   
+
+
+def search_nid(request):
+ if request.method == "GET":
+    query = request.GET.get('nid_number')
+    if query:
+        nid = Nid.objects.filter(nid_number=query)
+
+        
+    else:
+        nid = None
+    context = {'nids': nid} 
+   
+    return render(request,'nid/search.html',context)
+
+def search_citizen(request):
+    if request.method == 'POST':
+        nid_number = request.POST['nid_number']
+        try:
+            nid = Nid.objects.get(nid_number=nid_number)
+            citizen = nid.citizen
+        except Nid.DoesNotExist:
+            citizen = None
+        return render(request, 'nid/search.html', {'citizen': citizen})
+    else:
+          
+      return render(request, 'nid/citizen_list.html')   

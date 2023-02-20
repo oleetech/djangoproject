@@ -32,6 +32,23 @@
                 
             </tfoot>
     </table>
+
+    <h1>Search Nid</h1>
+    <form action="{% url 'search' %}" method="get" class="d-flex">
+        <label for="nid_number">NID Number:</label>
+        <input type="text" name="nid_number" id="nid_number">
+        <input type="submit" value="Search Nid">
+    </form>
+
+    <h1> Search Citizen From Nid </h1>
+
+    <form action="{% url 'search_citizen' %}" method="post" class="d-flex">
+        {% csrf_token %}
+        <label for="nid_number">Enter NID number:</label>
+        <input type="text" id="nid_number" name="nid_number">
+        <input type="submit" value="Search Cityzen ">
+      </form>
+    
 </div>
 
 

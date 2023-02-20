@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Nid No</th>
+                <th scope="col">Issue date </th>
+                <th scope="col">Expire date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nid in nids %}
+            <tr>
+                <td scope="row">{{ nid.nid_number}}</td>
+                <td>{{ nid.issue_date}}</td>
+                <td>{{ nid.expire_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+{% if citizen %}
+<h2>Results for NID number {{ citizen.nid.nid_number }}</h2>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td scope="row">{{ citizen.name }}</td>
+                <td>{{ citizen.date_of_birth }}</td>
+                <td>{{ citizen.address }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+{% else %}
+<h2>No Citizen Found </h2>
+{% endif %}
+
+
+
+{% endblock %}
