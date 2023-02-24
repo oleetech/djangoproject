@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'blog',
-    'sociallogin',
-    'social_django',  
+    'autocompletemulticolumn',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
