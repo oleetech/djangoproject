@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Order Info</h1>
+
+
+
+
+    <form  method="post">
+        {% csrf_token %}
+        {{ order_info_form.as_p}}
+
+        <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                {{ order_item_formset.management_form  }}
+                {% for form in order_item_formset  %}
+                <tr>
+                    <td>{{ form.product_name }}</td>
+                    <td>{{ form.quantity }}</td>
+                    <td>{{ form.price }}</td>
+                    <td>{{ form.id }}</td>
+                 
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

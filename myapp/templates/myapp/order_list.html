@@ -1,0 +1,28 @@
+<h1>Order List</h1>
+  <a href="{% url 'order_create' %}">Create New Order</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          
+          <td>{{ order.customer_name }}</td>
+          <td>{{ order.address }}</td>
+          <td>
+            <a href="{% url 'order_update' order.id %}">Edit</a>
+            <a href="{% url 'order_delete' order.id %}">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No orders found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
