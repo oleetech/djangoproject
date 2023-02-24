@@ -1,10 +1,10 @@
 # One to Many Relationship Practical (Sales Page Crud)
 
 ## Screenshots
+![Logo](https://i.postimg.cc/N02K6GXS/create.png)
+![Logo](https://i.postimg.cc/CLdSBPk6/list.png)
+![Logo](https://i.postimg.cc/4xNLNqcm/edit-update.png)
 
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://i.postimg.cc/N02K6GXS/create.png))
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://i.postimg.cc/CLdSBPk6/list.png)
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://i.postimg.cc/4xNLNqcm/edit-update.png)
 ## create App myapp
 ```bash
 python manage.py startapp myapp
